@@ -1,0 +1,59 @@
+winning numbers on the left;
+"numbers you have" on the right
+
+gonna need a parser
+
+figure out which of the 'numbers you have'
+appear in the list of winning numbers
+
+1 match = 1 point
+each subsequent match x= 2
+
+
+example:
+
+Card 1: 41 48* 83 86* 17* | 83* 86*  6 31 17*  9 48* 53
+Card 2: 13 32* 20 16 61* | 61* 30 68 82 17 32* 24 19
+Card 3:  1* 21* 53 59 44 | 69 82 63 72 16 21* 14  1*
+Card 4: 41 92 73 84* 69 | 59 84* 76 51 58  5 54 83
+Card 5: 87 83 26 28 32 | 88 30 70 12 93 22 82 36
+Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11
+
+Card 1 (4) = 1 * 2^3 = 8 pts
+card 2 (2) = 1 * 2^1 = 2 pts
+Card 3 (2) = 1 * 2^1 = 2 pts
+Card 4 (1) = 1 * 2^0 = 1 pt
+Card 5 (0) = 0 * 2^-1 = 0 pts
+Card 6 (0) = 0 * 2^-1 = 0 pts
+
+int(2^(n-1))
+
+13 points total
+
+High level algorithm:
+
+points = 0
+for each card:
+    points += get_points_for_card(card)
+
+get_points_for_card:
+winners = 0
+winning_numbers, numbers_i_have = split array on '|'  # I assume there will be something like this in javascript; can write if needed
+numbers_i_have_hashmap = object containing each number i have # to avoid walking the array each time
+for each winning_number:
+    try: # Again, this is pythonic...
+        numbers_i_have_hashmap[winning_number]
+        winners += 1
+    except:
+        pass
+
+return int(2^(winners-1)) # 2^0 = 1; 2^(negative number) is between 0 and 1; int will discard the decimal;
+
+
+I think that should do it. I'll begin by writing some tests, starting with verification that the given cards produce the expected
+individual numbers when put through get_points_for card.
+
+Then verifying that the overall function (run, perhaps) produces the expected 13 points total.
+
+I've just looked at the input and realized there's more to do on the parser.
+It's got to be able to tolerate a string containing 'Card <arbitrary number of spaces> <number>: '

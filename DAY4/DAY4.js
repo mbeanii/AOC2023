@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 function parse_input(input) {
     let parsed_input = [];
     let lines = input.split('\n');
@@ -26,8 +28,8 @@ function get_points_for_card(winning_numbers, numbers_you_have) {
     return parseInt(2 ** (winners-1));
 }
 
-function run(card) {
-    let parsed_input = parse_input(card);
+function run(raw_file) {
+    let parsed_input = parse_input(raw_file);
     points = 0;
     for (let i = 0; i < parsed_input.length; i++) {
         winning_numbers = parsed_input[i].winning_numbers;
@@ -36,5 +38,8 @@ function run(card) {
     }
     return points;
 }
+
+raw_file = fs.readFileSync('DAY4/input.txt', 'utf8');
+console.log(run(raw_file));
 
 module.exports = { parse_input, get_points_for_card, run };
