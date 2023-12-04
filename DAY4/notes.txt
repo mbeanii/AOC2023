@@ -57,3 +57,35 @@ Then verifying that the overall function (run, perhaps) produces the expected 13
 
 I've just looked at the input and realized there's more to do on the parser.
 It's got to be able to tolerate a string containing 'Card <arbitrary number of spaces> <number>: '
+
+First answer was 50811, but that turned out to be too high.
+
+Adding some tests...
+Noticing the input isn't evenly spaced - some have two spaces and some have one. wondering if that could be a problem.
+
+Added a check that the correct number of rows is being read in. It is.
+I note that the first card has 2 winners.
+
+Going to add a check that there are 10 winning numbers on each row.
+Going to add a check that there are 25 numbers_you_have on each row.
+
+
+Got it :) The above tests highlighted my bug - improper handling of multiple spaces.
+Part 1 answer was 21919.
+
+On to part 2.
+
+--- Part Two ---
+
+no points;
+more scratchcards depending on number of matches
+if row 10 has 3 matches, you get 3 more cards - rows 11, 12, and 13
+
+Smells like recursion
+OR keep track of num_copies for each row as you go :)
+
+Then sum the dict (object) values at the end.
+
+Easy peasy.
+
+9881048 is my number and it's right! :D

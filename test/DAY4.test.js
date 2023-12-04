@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const { parse_input, get_points_for_card, run } = require('../DAY4/DAY4.js');
+const { parse_input, get_points_for_card, run, run_part_2 } = require('../DAY4/DAY4.js');
 
 var raw_input = `Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53
 Card  2: 13 32 20 16 61 | 61 30 68 82 17 32 24 19
@@ -72,5 +72,11 @@ describe('get_points_for_card', () => {
 describe('run', () => {
     it('run should return 13 when given puzzle_input', () => {
         expect(run(raw_input)).to.equal(13);
+    });
+});
+
+describe('run_part_2', () => {
+    it('run should return 30 when given puzzle_input', () => {
+        expect(run_part_2(raw_input, true)).to.equal(30);
     });
 });
