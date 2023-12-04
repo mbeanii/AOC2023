@@ -34,6 +34,28 @@ describe('parse_input', () => {
             }
         }
     });
+
+    it('should have 186 rows when parsing input.txt', () => {
+        let raw_file = require('fs').readFileSync('DAY4/input.txt', 'utf8');
+        let parsed_input = parse_input(raw_file);
+        expect(parsed_input.length).to.equal(186);
+    });
+
+    it('should have 10 winning numbers in each row when parsing input.txt', () => {
+        let raw_file = require('fs').readFileSync('DAY4/input.txt', 'utf8');
+        let parsed_input = parse_input(raw_file);
+        for (let i = 0; i < parsed_input.length; i++) {
+            expect(parsed_input[i].winning_numbers.length).to.equal(10);
+        }
+    });
+
+    it('should have 25 numbers_you_have in each row when parsing input.txt', () => {
+        let raw_file = require('fs').readFileSync('DAY4/input.txt', 'utf8');
+        let parsed_input = parse_input(raw_file);
+        for (let i = 0; i < parsed_input.length; i++) {
+            expect(parsed_input[i].numbers_you_have.length).to.equal(25);
+        }
+    });
 });
 
 describe('get_points_for_card', () => {
