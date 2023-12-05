@@ -1,0 +1,74 @@
+Buncha maps
+
+#2 #1 #3
+
+where
+#2 is dest start
+#1 is source start
+#3 is length of interval
+
+Any not mapped get mapped to the same number
+
+Task is to find the lowest location number that corresponds to any of the initial seeds.
+(first input row)
+
+IN THIS EXAMPLE
+Gotta map seed -> soil -> fertilizer -> water -> light -> temperature -> humidity -> location
+
+looking at the puzzle input...
+Yeah it's the same.
+
+Blessedly, the inputs are space delinated this time.
+
+
+Here's the example:
+
+seeds: 79 14 55 13
+
+seed-to-soil map:
+50 98 2
+52 50 48
+
+soil-to-fertilizer map:
+0 15 37
+37 52 2
+39 0 15
+
+fertilizer-to-water map:
+49 53 8
+0 11 42
+42 0 7
+57 7 4
+
+water-to-light map:
+88 18 7
+18 25 70
+
+light-to-temperature map:
+45 77 23
+81 45 19
+68 64 13
+
+temperature-to-humidity map:
+0 69 1
+1 0 69
+
+humidity-to-location map:
+60 56 37
+56 93 4
+
+Expected output is 35.
+
+One way to begin would be by writing the trivial unit test for the above.
+
+Done. Next is to start writing the parser. It should read each map and...
+create a list of map objects.
+
+Then the process for following one number all the way through is achieved by
+iterating through the list of maps, and for each map, finding the number in the
+map that corresponds to the number we're looking for, and then using that number
+as the input for the next map.
+
+Test cases for this...
+1) should populate the maps property with a list of 7 int:int maps
+2) should populate the 'seeds' property with a list of ints
