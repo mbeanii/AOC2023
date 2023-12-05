@@ -71,4 +71,22 @@ as the input for the next map.
 
 Test cases for this...
 1) should populate the maps property with a list of 7 int:int maps
-2) should populate the 'seeds' property with a list of ints
+2) should populate the 'seeds' property with a list of ints (79 14 55 13)
+3) The first map (seed-to-soil) should map:
+seed  soil
+0     0
+1     1
+...   ...
+48    48
+49    49
+50    52
+51    53
+...   ...
+96    98
+97    99
+98    50
+99    51
+4) The maps should be unique
+5) Every map should contain at least one unique key/value (ie., not all 1:1, 2:2, etc.)
+
+Ahh! Got it all working for the example. But the real input memory errors.
