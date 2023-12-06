@@ -2,7 +2,6 @@ const { expect } = require('chai');
 const { Day5 } = require('../../DAY5/DAY5.js');
 
 const test_day5 = new Day5("");
-const live_day5 = new Day5('DAY5/input.txt');
 
 function mapsEqual(map1, map2) {
     if (map1.size !== map2.size) return false;

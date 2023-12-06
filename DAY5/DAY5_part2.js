@@ -71,9 +71,11 @@ class Day5 {
             let line = lines[i];
             if (line.includes('seeds:')){
                 let seeds = line.split(': ')[1];
-                seeds = seeds.split(' ');
-                for (let j = 0; j < seeds.length; j++){
-                    parsed_input.seeds.push(parseInt(seeds[j]));
+                seeds = seeds.split(' ').map(num => parseInt(num));
+                for (let i = 0; i < seeds.length; i += 2){
+                    for (let j = 0; j < seeds[i+1]; j++) {
+                        parsed_input.seeds.push(seeds[i] + j);
+                    }
                 }
             }
             else if (line.includes('map:')){
