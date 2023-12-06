@@ -3,16 +3,6 @@ const { Day5 } = require('../../DAY5/DAY5.js');
 
 const test_day5 = new Day5("");
 
-function mapsEqual(map1, map2) {
-    if (map1.size !== map2.size) return false;
-    for (let [key, val] of map1) {
-        if (!map2.has(key) || map2.get(key) !== val) {
-            return false;
-        }
-    }
-    return true;
-  }
-
 describe('Day5.run', () => {
     it('should return 35 on test data', () => {
         expect(test_day5.run()).to.equal(35);
