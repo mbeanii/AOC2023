@@ -42,20 +42,30 @@ class Day5 {
         }
         let parsed_input = this.parse_input();
         this.seeds = parsed_input.seeds;
-        this.maps = parsed_input.maps;
+        this.mapping_functions = parsed_input.mapping_functions;
+    }
+
+    build_mapping_function(map_vals){
+        return function (key) {
+            let value = key;
+            for (let i = 0; i < map_vals.length; i++){
+                let map_line = map_vals[i];
+                let dest_start = map_line[0];
+                let source_start = map_line[1];
+                let length = map_line[2];
+                if (source_start <= key && key < source_start + length){
+                    value = key + dest_start - source_start;
+                    break;
+                }
+            }
+            return value;
+        }
     }
 
     parse_input(){
-        let parsed_input = {seeds: [], maps: []};
+        let parsed_input = {seeds: [], mapping_functions: []};
         let lines = this.raw_input.split('\n');
-        let seed_to_soil_map = new Map();
-        let soil_to_fertilizer_map = new Map();
-        let fertilizer_to_water_map = new Map();
-        let water_to_light_map = new Map();
-        let light_to_temperature_map = new Map();
-        let temperature_to_humidity_map = new Map();
-        let humidity_to_location_map = new Map();
-        let current_map = null;
+        let map_vals = [];
 
         for (let i = 0; i < lines.length; i++){
             let line = lines[i];
@@ -66,44 +76,25 @@ class Day5 {
                     parsed_input.seeds.push(parseInt(seeds[j]));
                 }
             }
-            else if (line.includes('seed-to-soil map:')){
-                current_map = seed_to_soil_map;
-            }
-            else if (line.includes('soil-to-fertilizer map:')){
-                current_map = soil_to_fertilizer_map;
-            }
-            else if (line.includes('fertilizer-to-water map:')){
-                current_map = fertilizer_to_water_map;
-            }
-            else if (line.includes('water-to-light map:')){
-                current_map = water_to_light_map;
-            }
-            else if (line.includes('light-to-temperature map:')){
-                current_map = light_to_temperature_map;
-            }
-            else if (line.includes('temperature-to-humidity map:')){
-                current_map = temperature_to_humidity_map;
-            }
-            else if (line.includes('humidity-to-location map:')){
-                current_map = humidity_to_location_map;
+            else if (line.includes('map:')){
+                // Build the one before and clear the array for the next set
+                if (map_vals.length > 0){
+                    let mapping_function = this.build_mapping_function(map_vals)
+                    parsed_input.mapping_functions.push(mapping_function);
+                    map_vals = [];
+                }
             }
             else if (line.length > 0){
                 let map_line = line.trim().split(' ');
                 let dest_start = parseInt(map_line[0]);
                 let source_start = parseInt(map_line[1]);
                 let length = parseInt(map_line[2]);
-                for (let j = 0; j < length; j++){
-                    current_map.set(source_start + j, dest_start + j);
-                }
+                map_vals.push([dest_start, source_start, length])
             }
         }
-        parsed_input.maps.push(seed_to_soil_map);
-        parsed_input.maps.push(soil_to_fertilizer_map);
-        parsed_input.maps.push(fertilizer_to_water_map);
-        parsed_input.maps.push(water_to_light_map);
-        parsed_input.maps.push(light_to_temperature_map);
-        parsed_input.maps.push(temperature_to_humidity_map);
-        parsed_input.maps.push(humidity_to_location_map);
+        // Build the last one
+        parsed_input.mapping_functions.push(this.build_mapping_function(map_vals));
+        map_vals = [];
         return parsed_input;
     }
     

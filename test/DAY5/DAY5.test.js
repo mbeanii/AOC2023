@@ -1,8 +1,8 @@
 const { expect } = require('chai');
-const { Day5 } = require('../DAY5/DAY5.js');
+const { Day5 } = require('../../DAY5/DAY5.js');
 
 const test_day5 = new Day5("");
-// const live_day5 = new Day5('DAY5/input.txt');
+const live_day5 = new Day5('DAY5/input.txt');
 
 function mapsEqual(map1, map2) {
     if (map1.size !== map2.size) return false;
@@ -21,10 +21,10 @@ describe('Day5.run', () => {
 });
 
 describe('Day5.parse_input', () => {
-    it('should populate the maps property with a list of 7 int:int maps', () => {
-        expect(test_day5.maps.length).to.equal(7);
-        for (let i = 0; i < test_day5.maps.length; i++) {
-            expect(test_day5.maps[i]).to.be.a('map');
+    it('should populate the maps property with a list of 7 int:int map functions', () => {
+        expect(test_day5.mapping_functions.length).to.equal(7);
+        for (let i = 0; i < test_day5.mapping_functions.length; i++) {
+            expect(test_day5.mapping_functions[i]).to.be.a('function');
         }
     });
 });
@@ -42,7 +42,7 @@ describe('Day5.parse_input', () => {
 
 describe('Day5.parse_input', () => {
     it('The first map (seed-to-soil) should match the given values', () => {
-        console.log(test_day5.maps[0])
+        console.log(test_day5.mapping_functions[0])
         let expected_seed_to_soil = new Map();
         for (i = 0; i < 50; i++) {
             expected_seed_to_soil.set(i, i);
@@ -55,34 +55,8 @@ describe('Day5.parse_input', () => {
         }
 
         for (let [key, val] of expected_seed_to_soil) {
-            expect(test_day5.maps[0].get(key) || key).to.equal(val);
-        }
-    });
-});
-
-describe('Day5.parse_input', () => {
-    it('The maps should be unique', () => {
-        for (let i = 0; i < test_day5.maps.length; i++) {
-            for (let j = 0; j < test_day5.maps.length; j++) {
-                if (i != j) {
-                    expect(mapsEqual(test_day5.maps[i], test_day5.maps[j])).to.be.false;
-                }
-            }
-        }
-    });
-});
-
-describe('Day5.parse_input', () => {
-    it('Every map should contain at least one unique key/value (ie., not all 1:1, 2:2, etc.)', () => {
-        for (let i = 0; i < test_day5.maps.length; i++) {
-            at_least_one_unique = false;
-            for (let [key, val] of test_day5.maps[i]) {
-                if (key !== val) {
-                    at_least_one_unique = true;
-                    break;
-                }
-            }
-            expect(at_least_one_unique).to.be.true;
+            expect(test_day5.mapping_functions[0](key)).to.equal(val)
+            //expect(test_day5.maps[0].get(key) || key).to.equal(val);
         }
     });
 });

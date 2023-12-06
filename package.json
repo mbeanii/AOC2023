@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "directories": {
-    "test": "tests"
+    "test": "tests",
+    "test/DAY5": "DAY5"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha test/DAY5"
   },
   "keywords": [],
   "author": "",
