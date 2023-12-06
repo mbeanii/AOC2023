@@ -99,9 +99,21 @@ class Day5 {
     }
     
     run() {
-        return 13;
+        let lowest_location = null;
+        for (let i = 0; i < this.seeds.length; i++){
+            let seed = this.seeds[i];
+            for (let j = 0; j < this.mapping_functions.length; j++){
+                seed = this.mapping_functions[j](seed);
+            }
+            if (!lowest_location || seed < lowest_location){
+                lowest_location = seed;
+            }
+        }
+        return lowest_location;
     }
 };
 
+const live_day5 = new Day5('DAY5/input.txt');
+console.log(live_day5.run());
 
 module.exports = {Day5};

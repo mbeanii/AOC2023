@@ -56,7 +56,6 @@ describe('Day5.parse_input', () => {
 
         for (let [key, val] of expected_seed_to_soil) {
             expect(test_day5.mapping_functions[0](key)).to.equal(val)
-            //expect(test_day5.maps[0].get(key) || key).to.equal(val);
         }
     });
 });
