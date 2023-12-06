@@ -41,7 +41,7 @@ class Day5 {
             56 93 4`
         }
         let parsed_input = this.parse_input();
-        this.seeds = parsed_input.seeds;
+        this.seed_generator = parsed_input.seed_generator;
         this.mapping_functions = parsed_input.mapping_functions;
     }
 
@@ -62,8 +62,18 @@ class Day5 {
         }
     }
 
+    build_seed_generator(seeds){
+        return function* () {
+            for (let i = 0; i < seeds.length; i += 2){
+                for (let j = 0; j < seeds[i+1]; j++) {
+                    yield (seeds[i] + j);
+                }
+            }
+        }
+    }
+
     parse_input(){
-        let parsed_input = {seeds: [], mapping_functions: []};
+        let parsed_input = {seed_generator: null, mapping_functions: []};
         let lines = this.raw_input.split('\n');
         let map_vals = [];
 
@@ -72,11 +82,7 @@ class Day5 {
             if (line.includes('seeds:')){
                 let seeds = line.split(': ')[1];
                 seeds = seeds.split(' ').map(num => parseInt(num));
-                for (let i = 0; i < seeds.length; i += 2){
-                    for (let j = 0; j < seeds[i+1]; j++) {
-                        parsed_input.seeds.push(seeds[i] + j);
-                    }
-                }
+                parsed_input.seed_generator = this.build_seed_generator(seeds);
             }
             else if (line.includes('map:')){
                 // Build the one before and clear the array for the next set
@@ -102,8 +108,7 @@ class Day5 {
     
     run() {
         let lowest_location = null;
-        for (let i = 0; i < this.seeds.length; i++){
-            let seed = this.seeds[i];
+        for (let  seed of this.seed_generator()) {
             for (let j = 0; j < this.mapping_functions.length; j++){
                 seed = this.mapping_functions[j](seed);
             }

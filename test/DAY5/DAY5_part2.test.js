@@ -29,7 +29,7 @@ describe('part2 DAY5.parse_input', () => {
 });
 
 describe('part2 DAY5.parse_input', () => {
-    it('should populate the "seeds" property with a list of ints for part 2', () => {
+    it('seed_generator should yield the expected values for part 2', () => {
         expected_list = []
         for (let i = 0; i < 14; i++) {
             expected_list.push(79 + i);
@@ -37,10 +37,11 @@ describe('part2 DAY5.parse_input', () => {
         for (let i = 0; i < 13; i++) {
             expected_list.push(55 + i);
         }
-        expect(test_pt2_day5.seeds.length).to.equal(27);
-        for (let i = 0; i < expected_list.length; i++) {
-            expect(test_pt2_day5.seeds[i]).to.equal(expected_list[i]);
+        expect(expected_list.length).to.equal(27);
+        for (const seed of test_pt2_day5.seed_generator()) {
+            expect(seed).to.equal(expected_list.shift());
         }
+        expect(expected_list.length).to.equal(0);
     });
 });
 
