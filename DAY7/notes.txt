@@ -13,13 +13,27 @@ We first iterate through the list, and for each object:
 - calculate the card values
 - determine type
 - set sort_strength -- each  14 * 5
-`- Highest possible hand would be AAAAA, which would be (7 * 435) = 3045 # trump_value = 435 (equal to highest hand numerical value + 1)
-14 * 5 * <5 ^ 2> = 70 * 25 = 1750; 14 * (2^4) = 14 * 16 = 224
-14 * 4 * <4 ^ 2> = 56 * 16 = 896; 14 * (2^3) = 14 * 8 = 112
-14 * 3 * <3 ^ 2> = 42 * 9 = 378; 14 * (2^2) = 14 * 4 = 56
-14 * 2 * <2 ^ 2> = 28 * 4 = 112; 14 * (2^1) = 14 * 2 = 28
-14 * 1 * <1 ^ 2> = 14 * 1 = 14; 14 * (2^0) = 14 * 1 = 14
-Total value for highest hand = 3479 # So there's not too too much waste, considering 14 choose 5 is 2002.
+`- Highest possible hand would be AAAAA, which would be (7 * 759,375) = 5,315,625
+\\ trump_value = 759,375 (one higher than value of highest possible hand)
+14 * (15^4) = 14 * 50625 = 708750
+14 * (15^3) = 14 * 3375 = 47250
+14 * (15^2) = 14 * 225 = 3150
+14 * (15^1) = 14 * 15 = 210
+14 * (15^0) = 14 * 1 = 14
+Subtotal: 759,374
+Total = 6,074,999
+
+TQ5TT = 4 * 759,375 = 3,037,500
+10 * 15^4 = 10 * 50625 = 506250
+12 * 15^3 = 12 * 3375 = 40500
+5 * 15^2 = 5 * 225 = 1125
+10 * 15^1 = 10 * 15 = 150
+10 * 15^0 = 10 * 1 = 10
+Total value for TQ5TT = 3,585,535
+
+
+1 * 15^1 =
+14 * 15^0 = 14
 
 Sort the list based on sort_strength.
 

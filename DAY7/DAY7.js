@@ -69,11 +69,11 @@ class Hand{
     }
 
     calculateSortStrength(){
-        const trump_value = 435 // One greater than the highest possible total sort strength
+        const trump_value = 759375 // One greater than the highest possible total sort strength
         let sort_strength = this.type.value * trump_value;
         let length = this.card_values.length;
         for (let i = 0; i < length; i++){
-            let card_sort_strength = this.card_values[i] * (2 ** (length - i - 1));
+            let card_sort_strength = this.card_values[i] * (15 ** (length - i - 1));
             sort_strength += card_sort_strength;
         }
         return sort_strength;   
@@ -93,11 +93,18 @@ KK677 28
 KTJJT 220
 QQQJA 483`
         }
-        this.parsed_input = this.parse_input();
+        this.hands = this.parse_input();
     }
 
     parse_input(){
-        return 0;
+        let hands = [];
+        for (let line of this.raw_input.split('\n')){
+            let [cards, wager] = line.split(' ');
+            wager = parseInt(wager);
+            let hand = new Hand(cards, wager);
+            hands.push(hand);
+        }
+        return hands;
     }
 
     run(){
