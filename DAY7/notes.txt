@@ -2,15 +2,26 @@ Imagine a list of objects.
 
 Each object has a few properties:
 - cards: string[5]
-- card_weights: List of 5 ints
+- card_values: List of 5 ints
 - wager: int
-- hand: Hand (string name; int value)
+- type: HandType (string name; int value)
+- sort_strength: int
 
 We read the input from a file, and store it in a list of objects.
 
-We first iterate through the list, and for each object, we calculate the card weights and hand and store it in the object.
+We first iterate through the list, and for each object:
+- calculate the card values
+- determine type
+- set sort_strength -- each  14 * 5
+`- Highest possible hand would be AAAAA, which would be (7 * 435) = 3045 # trump_value = 435 (equal to highest hand numerical value + 1)
+14 * 5 * <5 ^ 2> = 70 * 25 = 1750; 14 * (2^4) = 14 * 16 = 224
+14 * 4 * <4 ^ 2> = 56 * 16 = 896; 14 * (2^3) = 14 * 8 = 112
+14 * 3 * <3 ^ 2> = 42 * 9 = 378; 14 * (2^2) = 14 * 4 = 56
+14 * 2 * <2 ^ 2> = 28 * 4 = 112; 14 * (2^1) = 14 * 2 = 28
+14 * 1 * <1 ^ 2> = 14 * 1 = 14; 14 * (2^0) = 14 * 1 = 14
+Total value for highest hand = 3479 # So there's not too too much waste, considering 14 choose 5 is 2002.
 
-We do a sort first based on hand.value, then based on card_weight[0], then card_weight[1], etc.
+Sort the list based on sort_strength.
 
 We then iterate through the list again, multiplying each weight (len(list) - index) by the wager, and summing the total as we go.
 
