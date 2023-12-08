@@ -40,3 +40,5 @@ Sort the list based on sort_strength.
 We then iterate through the list again, multiplying each weight (len(list) - index) by the wager, and summing the total as we go.
 
 I'll begin by writing the example test.
+
+For part 2, 250457986 was too high

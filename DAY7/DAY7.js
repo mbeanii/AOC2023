@@ -1,9 +1,10 @@
 console.time('ExecutionTime');
+const { count } = require('console');
 const fs = require('fs');
 
 const face_map = {
     "T": 10,
-    "J": 11,
+    "J": 1, // Part 2
     "Q": 12,
     "K": 13,
     "A": 14
@@ -44,7 +45,24 @@ class Hand{
 
     determineHand(){
         let counts = this.countRepeats();
+
+
+        // Part 2
+        if (this.cards === "JJJJJ"){
+            return ["Five of a Kind", 7]
+        }
+        let num_jacks = 0;
+        if ('J' in counts){
+            num_jacks = counts['J'];
+            delete counts['J'];
+        }
+
         let count_vals = Object.values(counts);
+
+        // Part 2
+        count_vals.sort((a, b) => b - a);
+        count_vals[0] += num_jacks;
+
         if (count_vals.includes(5)){
             return ["Five of a Kind", 7];
         }

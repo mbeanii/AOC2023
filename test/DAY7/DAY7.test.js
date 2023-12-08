@@ -38,3 +38,10 @@ describe('Day7.run', () => {
         expect(test_day7.run()).to.equal(6440);
     });
 });
+
+
+describe('Day7.run part 2', () => {
+    it('should return 5905 on test data', () => {
+        expect(test_day7.run()).to.equal(5905);
+    });
+});
