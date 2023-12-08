@@ -1,0 +1,17 @@
+Imagine a list of objects.
+
+Each object has a few properties:
+- cards: string[5]
+- card_weights: List of 5 ints
+- wager: int
+- hand: Hand (string name; int value)
+
+We read the input from a file, and store it in a list of objects.
+
+We first iterate through the list, and for each object, we calculate the card weights and hand and store it in the object.
+
+We do a sort first based on hand.value, then based on card_weight[0], then card_weight[1], etc.
+
+We then iterate through the list again, multiplying each weight (len(list) - index) by the wager, and summing the total as we go.
+
+I'll begin by writing the example test.
