@@ -138,8 +138,8 @@ QQQJA 483`
 }
 
 if (require.main === module) {
-    const live_day6 = new Day7('DAY7/input.txt');
-    console.log(live_day6.run());
+    const live_day7 = new Day7('DAY7/input.txt');
+    console.log(live_day7.run());
 }
 
 module.exports = {Hand, Day7};
