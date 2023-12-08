@@ -108,8 +108,20 @@ QQQJA 483`
     }
 
     run(){
-        return 0;
+        this.hands.sort((a, b) => a.sort_strength - b.sort_strength);
+        let total_winnings = 0;
+        for (let i = 0; i < this.hands.length; i++){
+            let hand = this.hands[i];
+            let hand_winnings = hand.wager * (i + 1);
+            total_winnings += hand_winnings;
+        }
+        return total_winnings;
     }
+}
+
+if (require.main === module) {
+    const live_day6 = new Day7('DAY7/input.txt');
+    console.log(live_day6.run());
 }
 
 module.exports = {Hand, Day7};
