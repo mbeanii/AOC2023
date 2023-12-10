@@ -95,11 +95,17 @@ const {Day${day}} = require('../../DAY${day}/DAY${day}.js');
 const test_day${day} = new Day${day}("");
 const live_day${day} = new Day${day}("DAY${day}/input.txt");
 
-describe('Day${day}.run', () => {
-    it('should return PASTE_HERE on test data', () => {
-        expect(test_day${day}.run()).to.equal(PASTE_HERE);
+part1_val = "PASTE_HERE"
+part2_val = "PASTE_HERE"
+
+val = part2_val
+
+describe('Day9.run', () => {
+    it(\`should return \${val} on test data\`, () => {
+        expect(test_day9.run()).to.equal(val);
     });
 });
+
 `);
 
     // Modify the package.json file scripts.test key to point to the new test directory

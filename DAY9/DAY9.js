@@ -31,7 +31,8 @@ const { all } = require('axios');
                     break;
                 }
             }
-            if (all_zero){
+            if (all_zero){            
+                line.unshift(0); // Part 2
                 return line;
             }
             let differences = [];
@@ -39,8 +40,13 @@ const { all } = require('axios');
                 differences.push(line[i + 1] - line[i]);
             }
             this.recursively_find_differences(differences);
-            line.push(0);
-            line[line.length - 1] = line[line.length - 2] + differences[differences.length - 1];
+            // Part 1
+            // line.push(0);
+            // line[line.length - 1] = line[line.length - 2] + differences[differences.length - 1];
+            
+            // Part 2
+            let val = line[0] - differences[0];
+            line.unshift(val)
             return line;
         }
 
@@ -48,7 +54,9 @@ const { all } = require('axios');
             let diff_sum = 0
             for (let i = 0; i < this.input_list.length; i++){
                 let differences = this.recursively_find_differences(this.input_list[i]);
-                diff_sum += differences[differences.length - 1];
+                // Part 1 diff_sum += differences[differences.length - 1];
+                // Part 2
+                diff_sum += differences[0];
             }
             return diff_sum;
         }
