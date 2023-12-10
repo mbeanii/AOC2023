@@ -37,7 +37,7 @@ async function synchronize(){
                 this.raw_input = 
     \`PASTE_HERE\`
             }
-            this.hands = this.parse_input();
+            this.parsed_input = this.parse_input();
         }
 
         parse_input(){
@@ -54,7 +54,7 @@ async function synchronize(){
         console.log(live_day${day}.run());
     }
 
-    module.exports = {Hand, Day${day}};
+    module.exports = {Day${day}};
 
     console.timeEnd('ExecutionTime');
     `);
@@ -90,14 +90,14 @@ async function synchronize(){
     fs.mkdirSync(test_dir);
     fs.writeFileSync(`${test_dir}/DAY${day}.test.js`,
 `const { expect } = require('chai');
-const {Hand, Day${day}} = require('../DAY${day}.js');
+const {Day${day}} = require('../../DAY${day}/DAY${day}.js');
 
 const test_day${day} = new Day${day}("");
 const live_day${day} = new Day${day}("DAY${day}/input.txt");
 
-describe('Day7.run', () => {
+describe('Day${day}.run', () => {
     it('should return PASTE_HERE on test data', () => {
-        expect(test_day7.run()).to.equal(PASTE_HERE);
+        expect(test_day${day}.run()).to.equal(PASTE_HERE);
     });
 });
 `);

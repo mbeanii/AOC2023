@@ -10,7 +10,7 @@ console.time("Day 8 Execution Time")
                 this.raw_input = 
     `PASTE_HERE`
             }
-            this.hands = this.parse_input();
+            this.parsed_input = this.parse_input();
         }
 
         parse_input(){
@@ -27,7 +27,7 @@ console.time("Day 8 Execution Time")
         console.log(live_day8.run());
     }
 
-    module.exports = {Hand, Day8};
+    module.exports = {Day8};
 
     console.timeEnd('ExecutionTime');
     
