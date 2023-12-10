@@ -35,7 +35,7 @@ async function synchronize(){
             }
             else{
                 this.raw_input = 
-    \`PASTE_HERE\`
+\`PASTE_HERE\`
             }
             this.parsed_input = this.parse_input();
         }
@@ -56,7 +56,7 @@ async function synchronize(){
 
     module.exports = {Day${day}};
 
-    console.timeEnd('ExecutionTime');
+    console.timeEnd("Day ${day} Execution Time");
     `);
 
 

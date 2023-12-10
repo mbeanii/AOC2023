@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "mocha ./test/DAY8"
+    "test": "mocha ./test/DAY9"
   },
   "keywords": [],
   "author": "",
