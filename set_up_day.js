@@ -26,38 +26,38 @@ async function synchronize(){
     fs.mkdirSync(`./DAY${day}`);
     fs.writeFileSync(`./DAY${day}/DAY${day}.js`, 
     `console.time("Day ${day} Execution Time")
-    const fs = require('fs');
+const fs = require('fs');
 
-    class Day${day}{
-        constructor(filepath){
-            if (filepath){
-                this.raw_input = fs.readFileSync(filepath, 'utf8');
-            }
-            else{
-                this.raw_input = 
+class Day${day}{
+    constructor(filepath){
+        if (filepath){
+            this.raw_input = fs.readFileSync(filepath, 'utf8');
+        }
+        else{
+            this.raw_input = 
 \`PASTE_HERE\`
-            }
-            this.parsed_input = this.parse_input();
         }
-
-        parse_input(){
-            return "Not Implemented";
-        }
-
-        run(){
-            return "Not Implemented";
-        }
+        this.parsed_input = this.parse_input();
     }
 
-    if (require.main === module) {
-        const live_day${day} = new Day${day}('DAY${day}/input.txt');
-        console.log(live_day${day}.run());
+    parse_input(){
+        return "Not Implemented";
     }
 
-    module.exports = {Day${day}};
+    run(){
+        return "Not Implemented";
+    }
+}
 
-    console.timeEnd("Day ${day} Execution Time");
-    `);
+if (require.main === module) {
+    const live_day${day} = new Day${day}('DAY${day}/input.txt');
+    console.log(live_day${day}.run());
+}
+
+module.exports = {Day${day}};
+
+console.timeEnd("Day ${day} Execution Time");
+`);
 
 
     // Get the input from the AoC website and save it to the input.txt file
@@ -98,11 +98,11 @@ const live_day${day} = new Day${day}("DAY${day}/input.txt");
 part1_val = "PASTE_HERE"
 part2_val = "PASTE_HERE"
 
-val = part2_val
+val = part1_val
 
-describe('Day9.run', () => {
+describe('Day${day}.run', () => {
     it(\`should return \${val} on test data\`, () => {
-        expect(test_day9.run()).to.equal(val);
+        expect(test_day${day}.run()).to.equal(val);
     });
 });
 

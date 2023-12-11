@@ -1,0 +1,27 @@
+X Read input into a 2D array
+
+Walk the array to:
+Find 'S' (get Sx and Sy)
+Look around at the 4 adjacent tiles. Find one that connects.
+break
+
+Beginning with S (x, y = Sx, Sy):
+Increment the counter
+Follow the tile*
+If xy == Sx, Sy:
+   return counter/2
+
+
+Follow:
+Increment x, y depending on the value of the tile and the direction of travel.
+For instance, if the next tile is on the right and it's a horizontal pipe, increment x.
+
+A one to two mapping will be useful for this. Something like:
+
+|: (0, 1), (0, -1)
+
+I guess we can just try the first one and if we end up back where we were, undo and
+do the next one instead? With like a precompute step in between... Seems clunky,
+but it'd probably work. Easier than trying to keep a notion of direction or something.
+
+Cool. Let's do it.
