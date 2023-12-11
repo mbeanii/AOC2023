@@ -67,8 +67,8 @@ L|-JF`
 
     find_start() {
         let start = [];
-        this.two_d_arr.some((row, row_index) => {
-            return row.some((char, col_index) => {
+        this.two_d_arr.some((row, col_index) => {
+            return row.some((char, row_index) => {
                 if (char === 'S') {
                     start = [row_index, col_index];
                     return true;
@@ -147,25 +147,16 @@ L|-JF`
         this.current_node.next = this.find_next();
     }
 
-    calculateDistance(){
-        return Math.abs(this.current_node.x - this.starting_node.x) + Math.abs(this.current_node.y - this.starting_node.y);
-    }
-
     run(){
-        let max_distance = 0;
-        let max_distance_steps = 0;
-        let distance = 0;
-        let count_steps = 0;
+        let count_steps = 1;
         while (this.current_node.next.value != "S"){
+            if (count_steps === 7){
+                console.log("")
+            }
             this.step();
             count_steps++;
-            distance = this.calculateDistance();
-            if (distance > max_distance){
-                max_distance = distance;
-                max_distance_steps = count_steps;
-            }
         }
-        return max_distance_steps;
+        return count_steps / 2;
     }
 }
 
