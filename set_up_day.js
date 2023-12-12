@@ -79,7 +79,10 @@ console.timeEnd("Day ${day} Execution Time");
             console.log(`Request failed with status code ${response.status}`);
             return;
         }
-    
+        // remove the trailing newline
+        if (response.data[response.data.length - 1] == '\n'){
+            response.data = response.data.slice(0, response.data.length - 1);
+        }
         fs.writeFileSync(input_file, response.data);
     } catch (error) {
         console.log('Error:', error.message);
